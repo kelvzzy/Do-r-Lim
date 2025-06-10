@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorstack - Real Estate Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg-real-estate {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1920x1080/4a5568/ffffff?text=Luxury+Properties');
+            background-size: cover;
+            background-position: center;
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-900">
+                DORSTACK
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html#home" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+                <a href="index.html#about" class="text-gray-600 hover:text-blue-600 transition">About</a>
+                <a href="index.html#services" class="text-blue-600 font-semibold transition">Services</a>
+                <a href="index.html#projects" class="text-gray-600 hover:text-blue-600 transition">Projects</a>
+                <a href="index.html#contact" class="bg-blue-600 text-white px-4 py-2 rounded-md cta-button">Contact Us</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-900 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+         <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="index.html#home" class="block py-2 px-4 text-sm hover:bg-gray-100">Home</a>
+            <a href="index.html#about" class="block py-2 px-4 text-sm hover:bg-gray-100">About</a>
+            <a href="index.html#services" class="block py-2 px-4 text-sm hover:bg-gray-100">Services</a>
+            <a href="index.html#projects" class="block py-2 px-4 text-sm hover:bg-gray-100">Projects</a>
+            <a href="index.html#contact" class="block py-2 px-4 text-sm hover:bg-gray-100">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Real Estate Hero Section -->
+    <section id="home" class="hero-bg-real-estate text-white">
+        <div class="container mx-auto px-6 py-32">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Dorstack Real Estate</h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8">Delivering premier properties and expert real estate services. Your vision, our foundation.</p>
+                <a href="#contact" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg cta-button">Schedule a Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section id="real-estate-services" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-2">Our Real Estate Expertise</h2>
+            <p class="text-gray-600 mb-12">Full-spectrum services to meet every real estate need.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <!-- Service 1: Development -->
+                <div class="bg-gray-50 p-8 rounded-lg">
+                    <h3 class="text-xl font-bold mb-3 text-blue-700">Property Development</h3>
+                    <p class="text-gray-600">From concept to completion, we manage residential and commercial development projects, creating value and iconic structures.</p>
+                </div>
+                <!-- Service 2: Brokerage -->
+                <div class="bg-gray-50 p-8 rounded-lg">
+                    <h3 class="text-xl font-bold mb-3 text-blue-700">Sales & Brokerage</h3>
+                    <p class="text-gray-600">Expert guidance for buying, selling, or leasing properties. We leverage market insights to secure the best deals for our clients.</p>
+                </div>
+                <!-- Service 3: Management -->
+                <div class="bg-gray-50 p-8 rounded-lg">
+                    <h3 class="text-xl font-bold mb-3 text-blue-700">Property Management</h3>
+                    <p class="text-gray-600">Professional, hassle-free management of your real estate assets, maximizing returns and ensuring tenant satisfaction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section id="featured-properties" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-2">Featured Properties</h2>
+                <p class="text-gray-600 mb-12">Explore a selection of our exclusive listings.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Property Card 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden property-card transition-all duration-300">
+                    <img src="https://placehold.co/600x400/a0aec0/ffffff?text=Maitama+Villa" alt="Luxury Villa" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm text-gray-500">Maitama, Abuja</span>
+                        <h3 class="text-xl font-bold my-2">Luxury 5-Bedroom Villa</h3>
+                        <p class="text-blue-600 font-semibold text-lg">₦450,000,000</p>
+                        <div class="mt-4 border-t pt-4 flex justify-between text-gray-600 text-sm">
+                            <span>5 Beds</span>
+                            <span>6 Baths</span>
+                            <span>Pool</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Property Card 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden property-card transition-all duration-300">
+                    <img src="https://placehold.co/600x400/718096/ffffff?text=Ikoyi+Apartment" alt="Modern Apartment" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm text-gray-500">Ikoyi, Lagos</span>
+                        <h3 class="text-xl font-bold my-2">Modern Waterfront Apartment</h3>
+                        <p class="text-blue-600 font-semibold text-lg">₦280,000,000</p>
+                        <div class="mt-4 border-t pt-4 flex justify-between text-gray-600 text-sm">
+                            <span>3 Beds</span>
+                            <span>3 Baths</span>
+                            <span>Gym</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Property Card 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden property-card transition-all duration-300">
+                    <img src="https://placehold.co/600x400/4a5568/ffffff?text=Commercial+Plaza" alt="Commercial Plaza" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm text-gray-500">Port Harcourt</span>
+                        <h3 class="text-xl font-bold my-2">Prime Commercial Plaza</h3>
+                        <p class="text-blue-600 font-semibold text-lg">Price on Request</p>
+                        <div class="mt-4 border-t pt-4 flex justify-between text-gray-600 text-sm">
+                            <span>1,200 sqm</span>
+                            <span>High Traffic</span>
+                            <span>Parking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Footer -->
+    <footer id="contact" class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12 text-center">
+             <h2 class="text-3xl font-bold mb-4">Ready to Find Your Perfect Property?</h2>
+             <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Our real estate experts are ready to assist you with your investment, development, or purchasing needs. Contact us today for a personalized consultation.</p>
+             <a href="mailto:realestate@dorstack.com" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg cta-button">Email Our Team</a>
+             <div class="mt-10 border-t border-gray-700 pt-6 text-gray-500">
+                <p>&copy; <span id="year"></span> Dorstack. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

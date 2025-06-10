@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorstack - Our Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .filter-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .filter-btn.active {
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block; /* Default state */
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .project-card.hidden {
+            display: none; /* Hide element */
+        }
+    </style>
+</head>
+<body class="text-gray-700">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-900">
+                DORSTACK
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+                <a href="index.html#about" class="text-gray-600 hover:text-blue-600 transition">About</a>
+                <a href="index.html#services" class="text-gray-600 hover:text-blue-600 transition">Services</a>
+                <a href="projects.html" class="text-blue-600 font-semibold transition">Projects</a>
+                <a href="insights.html" class="text-gray-600 hover:text-blue-600 transition">Insights</a>
+                <a href="#contact" class="bg-blue-600 text-white px-4 py-2 rounded-md">Contact Us</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-900 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="bg-white pt-16 pb-12">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900">Our Portfolio</h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Explore our diverse range of successfully completed and ongoing projects that showcase our commitment to excellence.</p>
+        </div>
+    </section>
+
+    <!-- Filter Buttons -->
+    <div class="container mx-auto px-6 mb-12 flex justify-center flex-wrap gap-2 md:gap-4">
+        <button class="filter-btn active px-4 py-2 font-semibold text-sm bg-gray-200 text-gray-800 rounded-full" data-filter="all">All</button>
+        <button class="filter-btn px-4 py-2 font-semibold text-sm bg-gray-200 text-gray-800 rounded-full" data-filter="commercial">Commercial</button>
+        <button class="filter-btn px-4 py-2 font-semibold text-sm bg-gray-200 text-gray-800 rounded-full" data-filter="residential">Residential</button>
+        <button class="filter-btn px-4 py-2 font-semibold text-sm bg-gray-200 text-gray-800 rounded-full" data-filter="consulting">Consulting</button>
+        <button class="filter-btn px-4 py-2 font-semibold text-sm bg-gray-200 text-gray-800 rounded-full" data-filter="real-estate">Real Estate</button>
+    </div>
+
+    <!-- Projects Grid -->
+    <main class="container mx-auto px-6 pb-20">
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="project-card" data-category="commercial">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
+                    <img class="h-56 w-full object-cover" src="https://placehold.co/600x400/a0aec0/ffffff?text=Lagos+Tower" alt="Lagos Financial Tower">
+                    <div class="p-6">
+                        <span class="text-sm text-blue-600 font-semibold">COMMERCIAL</span>
+                        <h3 class="text-xl font-bold my-2 text-gray-800">Lagos Financial Tower</h3>
+                        <p class="text-gray-600">A 30-story commercial building featuring cutting-edge sustainable technology.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="project-card" data-category="real-estate">
+                 <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
+                    <img class="h-56 w-full object-cover" src="https://placehold.co/600x400/718096/ffffff?text=Asokoro+Estate" alt="Asokoro Luxury Estate">
+                    <div class="p-6">
+                        <span class="text-sm text-blue-600 font-semibold">REAL ESTATE</span>
+                        <h3 class="text-xl font-bold my-2 text-gray-800">Asokoro Luxury Estate</h3>
+                        <p class="text-gray-600">Development and sales of an exclusive 50-unit luxury residential estate in Abuja.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="project-card" data-category="consulting">
+                 <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
+                    <img class="h-56 w-full object-cover" src="https://placehold.co/600x400/4a5568/ffffff?text=Logistics+Strategy" alt="National Logistics Strategy">
+                    <div class="p-6">
+                        <span class="text-sm text-blue-600 font-semibold">CONSULTING</span>
+                        <h3 class="text-xl font-bold my-2 text-gray-800">National Logistics Strategy</h3>
+                        <p class="text-gray-600">Advisory services for the federal government on optimizing national supply chains.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 4 -->
+            <div class="project-card" data-category="residential">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
+                    <img class="h-56 w-full object-cover" src="https://placehold.co/600x400/a0aec0/ffffff?text=Ikoyi+Residences" alt="Ikoyi Residences">
+                    <div class="p-6">
+                        <span class="text-sm text-blue-600 font-semibold">RESIDENTIAL</span>
+                        <h3 class="text-xl font-bold my-2 text-gray-800">Ikoyi Glass-House Residences</h3>
+                        <p class="text-gray-600">Design-build project for a collection of ultra-modern family homes in Lagos.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more projects as needed, following the structure above -->
+        </div>
+    </main>
+
+    <script>
+        // Project filtering logic
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Set active button style
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.dataset.filter;
+
+                // Show/hide project cards
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

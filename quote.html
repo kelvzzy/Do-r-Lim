@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorstack - Get a Quote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .form-step {
+            display: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .form-step.active {
+            display: block;
+        }
+        .progress-bar-fill {
+            transition: width 0.5s ease-in-out;
+        }
+        .service-option {
+            transition: all 0.2s ease;
+            border: 2px solid #e5e7eb;
+        }
+        .service-option:hover {
+            border-color: #60a5fa;
+            background-color: #f9fafb;
+        }
+        .service-option.selected {
+            border-color: #2563eb;
+            background-color: #dbeafe;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-900">DORSTACK</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600">Home</a>
+                <a href="team.html" class="text-gray-600 hover:text-blue-600">About</a>
+                <a href="index.html#services" class="text-gray-600 hover:text-blue-600">Services</a>
+                <a href="projects.html" class="text-gray-600 hover:text-blue-600">Projects</a>
+                <a href="insights.html" class="text-gray-600 hover:text-blue-600">Insights</a>
+                <a href="quote.html" class="bg-blue-600 text-white px-4 py-2 rounded-md">Contact Us</a>
+            </div>
+             <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-900 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Quote Form -->
+    <main class="container mx-auto max-w-2xl px-6 py-12 md:py-24">
+        <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div id="quote-form">
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="h-2 w-full bg-gray-200 rounded-full">
+                        <div id="progress-bar" class="h-full bg-blue-600 rounded-full progress-bar-fill" style="width: 33%;"></div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Select Service -->
+                <div id="step1" class="form-step active">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Let's start your project</h2>
+                    <p class="text-gray-600 mb-6">What service are you interested in?</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="service-option p-4 rounded-lg cursor-pointer text-center" data-service="General Contracting">General Contracting</div>
+                        <div class="service-option p-4 rounded-lg cursor-pointer text-center" data-service="Consulting Services">Consulting Services</div>
+                        <div class="service-option p-4 rounded-lg cursor-pointer text-center" data-service="Real Estate">Real Estate</div>
+                        <div class="service-option p-4 rounded-lg cursor-pointer text-center" data-service="Security Assessments">Security Assessments</div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Project Details -->
+                <div id="step2" class="form-step">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Tell us more</h2>
+                    <p class="text-gray-600 mb-6">Please provide some details about your project.</p>
+                    <textarea id="project-details" class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="e.g., I'm looking to build a 4-bedroom duplex in Lekki..." required></textarea>
+                    <div class="mt-6 flex justify-between">
+                        <button type="button" class="prev-btn bg-gray-300 text-gray-800 px-6 py-2 rounded-lg">Back</button>
+                        <button type="button" class="next-btn bg-blue-600 text-white px-6 py-2 rounded-lg">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Contact Info -->
+                <div id="step3" class="form-step">
+                     <h2 class="text-2xl font-bold text-gray-900 mb-2">Your Contact Information</h2>
+                    <p class="text-gray-600 mb-6">How can we reach you?</p>
+                    <div class="space-y-4">
+                        <input type="text" id="full-name" placeholder="Full Name" class="w-full p-3 border border-gray-300 rounded-lg" required>
+                        <input type="email" id="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-lg" required>
+                        <input type="tel" id="phone" placeholder="Phone Number" class="w-full p-3 border border-gray-300 rounded-lg">
+                    </div>
+                     <div class="mt-6 flex justify-between">
+                        <button type="button" class="prev-btn bg-gray-300 text-gray-800 px-6 py-2 rounded-lg">Back</button>
+                        <button type="submit" class="submit-btn bg-green-600 text-white px-6 py-2 rounded-lg">Submit Request</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Thank You Message -->
+            <div id="thank-you" class="text-center hidden">
+                <svg class="w-16 h-16 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <h2 class="text-2xl font-bold text-gray-900 mt-4">Thank You!</h2>
+                <p class="text-gray-600 mt-2">Your request has been sent. Our team will get back to you within 24 hours.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.form-step');
+            const progressBar = document.getElementById('progress-bar');
+            const quoteForm = document.getElementById('quote-form');
+            const thankYouMessage = document.getElementById('thank-you');
+            let currentStep = 0;
+            let selectedService = '';
+
+            const updateProgress = () => {
+                progressBar.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
+            };
+
+            const showStep = (stepIndex) => {
+                steps.forEach((step, index) => {
+                    step.classList.toggle('active', index === stepIndex);
+                });
+                currentStep = stepIndex;
+                updateProgress();
+            };
+
+            document.querySelectorAll('.service-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    selectedService = this.dataset.service;
+                    document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    // Automatically move to next step after a short delay
+                    setTimeout(() => showStep(1), 300);
+                });
+            });
+
+            document.querySelectorAll('.next-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    if (currentStep < steps.length - 1) {
+                        showStep(currentStep + 1);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.prev-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    if (currentStep > 0) {
+                        showStep(currentStep - 1);
+                    }
+                });
+            });
+            
+            document.querySelector('.submit-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                // Here you would typically send the form data to a server
+                console.log('Form Submitted');
+                console.log('Service:', selectedService);
+                console.log('Details:', document.getElementById('project-details').value);
+                console.log('Name:', document.getElementById('full-name').value);
+                console.log('Email:', document.getElementById('email').value);
+                console.log('Phone:', document.getElementById('phone').value);
+                
+                quoteForm.classList.add('hidden');
+                thankYouMessage.classList.remove('hidden');
+            });
+
+            showStep(0); // Initialize first step
+        });
+    </script>
+
+</body>
+</html>
