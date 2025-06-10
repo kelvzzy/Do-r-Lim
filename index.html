@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorstack - Contracting & Consulting Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <!-- Swiper.js CSS for Testimonial Slider -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/2d3748/ffffff?text=Modern+Architecture');
+            background-size: cover;
+            background-position: center;
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Testimonial Slider Styles */
+        .testimonial-slider {
+            background-color: #f8fafc;
+        }
+        .swiper-slide {
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+        }
+        .swiper-slide-active {
+            opacity: 1;
+        }
+        .swiper-pagination-bullet {
+            background: #9ca3af;
+            width: 10px;
+            height: 10px;
+        }
+        .swiper-pagination-bullet-active {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-900">
+                DORSTACK
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#home" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600 transition">About</a>
+                <div class="relative group">
+                    <button class="text-gray-600 hover:text-blue-600 transition focus:outline-none">
+                        Services <span class="text-xs">▼</span>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 invisible group-hover:visible">
+                        <a href="general-contracting.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">General Contracting</a>
+                        <a href="consulting-services.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Consulting Services</a>
+                        <a href="real-estate.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Real Estate</a>
+                        <a href="security-assessments.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Security Assessments</a>
+                    </div>
+                </div>
+                <a href="projects.html" class="text-gray-600 hover:text-blue-600 transition">Projects</a>
+                <a href="insights.html" class="text-gray-600 hover:text-blue-600 transition">Insights</a>
+                <a href="#contact" class="bg-blue-600 text-white px-4 py-2 rounded-md cta-button">Contact Us</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-900 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+             <a href="#home" class="block py-2 px-4 text-sm hover:bg-gray-100">Home</a>
+             <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-100">About</a>
+             <a href="general-contracting.html" class="block py-2 px-4 text-sm hover:bg-gray-100">General Contracting</a>
+             <a href="consulting-services.html" class="block py-2 px-4 text-sm hover:bg-gray-100">Consulting Services</a>
+             <a href="real-estate.html" class="block py-2 px-4 text-sm hover:bg-gray-100">Real Estate</a>
+             <a href="security-assessments.html" class="block py-2 px-4 text-sm hover:bg-gray-100">Security Assessments</a>
+             <a href="projects.html" class="block py-2 px-4 text-sm hover:bg-gray-100">Projects</a>
+             <a href="insights.html" class="block py-2 px-4 text-sm hover:bg-gray-100">Insights</a>
+             <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-100">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white">
+        <div class="container mx-auto px-6 py-32 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Excellence in Contracting & Strategic Consulting</h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-8">Building the future of Nigeria with integrity, innovation, and unparalleled expertise.</p>
+            <a href="#services" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg cta-button">Our Services</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-2">Our Core Services</h2>
+            <p class="text-gray-600 mb-12">Specialized solutions tailored to your most complex challenges.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <a href="general-contracting.html" class="block"><div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 h-full"><div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h6m-6 4h6m-6 4h6"></path></svg></div><h3 class="text-xl font-bold mb-2">General Contracting</h3><p class="text-gray-600">End-to-end construction management for commercial and residential projects, delivering quality on time and within budget.</p></div></a>
+                <a href="consulting-services.html" class="block"><div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 h-full"><div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div><h3 class="text-xl font-bold mb-2">Consulting Services</h3><p class="text-gray-600">Strategic advisory to navigate market complexities, optimize operations, and drive sustainable growth.</p></div></a>
+                <a href="real-estate.html" class="block"><div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 h-full"><div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg></div><h3 class="text-xl font-bold mb-2">Real Estate</h3><p class="text-gray-600">Comprehensive real estate services, from development and investment analysis to sales and property management.</p></div></a>
+                <a href="security-assessments.html" class="block"><div class="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 h-full"><div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div><h3 class="text-xl font-bold mb-2">Security Assessments</h3><p class="text-gray-600">In-depth risk analysis and security consulting to protect your assets, infrastructure, and personnel.</p></div></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Snippet -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap items-center -mx-4">
+                <div class="w-full md:w-1/2 px-4 mb-8 md:mb-0">
+                    <img src="https://placehold.co/600x400/e2e8f0/333333?text=Our+Team" alt="Dorstack Team" class="rounded-lg shadow-xl w-full">
+                </div>
+                <div class="w-full md:w-1/2 px-4">
+                    <h2 class="text-3xl font-bold mb-4">Your Trusted Partner in Progress</h2>
+                    <p class="text-gray-600 mb-4">For over a decade, Dorstack has been a cornerstone of quality and reliability in Nigeria's contracting and consulting landscape. We are a team of dedicated professionals committed to turning visionary ideas into tangible realities.</p>
+                    <p class="text-gray-600 mb-6">Our integrated approach combines deep industry knowledge with a passion for innovation, ensuring every project we undertake is a benchmark for success.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Learn More About Our Story →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-2">Featured Projects</h2>
+            <p class="text-gray-600 mb-12">A glimpse into our commitment to excellence.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://placehold.co/600x400/a0aec0/ffffff?text=Lagos+Tower" alt="Project 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-end p-6">
+                        <div>
+                            <h3 class="text-white text-xl font-bold">Lagos Financial Tower</h3>
+                            <p class="text-blue-300">Commercial Construction</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://placehold.co/600x400/718096/ffffff?text=Abuja+Estate" alt="Project 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-end p-6">
+                        <div>
+                            <h3 class="text-white text-xl font-bold">Asokoro Luxury Estate</h3>
+                            <p class="text-blue-300">Real Estate Development</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://placehold.co/600x400/4a5568/ffffff?text=Corp+Strategy" alt="Project 3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-end p-6">
+                        <div>
+                            <h3 class="text-white text-xl font-bold">National Logistics Strategy</h3>
+                            <p class="text-blue-300">Strategic Consulting</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-16">
+                <a href="projects.html" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg cta-button">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Client Testimonials Section -->
+    <section class="py-20 testimonial-slider">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900">What Our Clients Say</h2>
+                <p class="text-gray-600 mt-2">We are proud to build long-lasting partnerships.</p>
+            </div>
+            <!-- Swiper -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+                            <p class="text-gray-600 text-lg italic mb-6">"Dorstack's professionalism and commitment to quality were evident from day one. They delivered our commercial tower ahead of schedule and exceeded our expectations."</p>
+                            <div class="flex items-center">
+                                <img class="w-12 h-12 rounded-full mr-4" src="https://placehold.co/100x100/e2e8f0/333333?text=AA" alt="Avatar of Adebayo Adekunle">
+                                <div>
+                                    <p class="font-bold text-gray-800">Adebayo Adekunle</p>
+                                    <p class="text-sm text-gray-500">CEO, Titan Industries</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                         <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+                            <p class="text-gray-600 text-lg italic mb-6">"The strategic advice from Dorstack's consulting team was a game-changer for our market entry. Their insights were invaluable. Highly recommended."</p>
+                            <div class="flex items-center">
+                                <img class="w-12 h-12 rounded-full mr-4" src="https://placehold.co/100x100/e2e8f0/333333?text=CO" alt="Avatar of Chioma Okoro">
+                                <div>
+                                    <p class="font-bold text-gray-800">Chioma Okoro</p>
+                                    <p class="text-sm text-gray-500">Director, Greenfield Logistics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+                            <p class="text-gray-600 text-lg italic mb-6">"From land acquisition to the final sale, the Dorstack Real Estate team was exceptional. Their market knowledge secured a fantastic return on our investment."</p>
+                            <div class="flex items-center">
+                                <img class="w-12 h-12 rounded-full mr-4" src="https://placehold.co/100x100/e2e8f0/333333?text=MB" alt="Avatar of Musa Bello">
+                                <div>
+                                    <p class="font-bold text-gray-800">Musa Bello</p>
+                                    <p class="text-sm text-gray-500">Private Investor</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination mt-8"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Latest Insights Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900">Latest Insights</h2>
+                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Stay informed with our analysis of the Nigerian business and construction landscape.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Insight Post 1 -->
+                <a href="insights.html" class="block group">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden h-full transform group-hover:shadow-xl transition-shadow duration-300">
+                        <img class="h-56 w-full object-cover" src="https://placehold.co/600x400/a0aec0/ffffff?text=Investment+Trends" alt="Article thumbnail">
+                        <div class="p-6">
+                            <span class="text-sm text-blue-600 font-semibold">REAL ESTATE</span>
+                            <h3 class="text-xl font-bold my-2 text-gray-800">Top 5 Real Estate Investment Hotspots in Nigeria for 2025</h3>
+                            <p class="text-gray-600">An in-depth look at emerging areas poised for significant growth...</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Insight Post 2 -->
+                <a href="insights.html" class="block group">
+                     <div class="bg-white rounded-lg shadow-md overflow-hidden h-full transform group-hover:shadow-xl transition-shadow duration-300">
+                        <img class="h-56 w-full object-cover" src="https://placehold.co/600x400/718096/ffffff?text=Tech+in+Construction" alt="Article thumbnail">
+                        <div class="p-6">
+                            <span class="text-sm text-blue-600 font-semibold">CONSTRUCTION</span>
+                            <h3 class="text-xl font-bold my-2 text-gray-800">How Technology is Changing the Face of Construction in Africa</h3>
+                            <p class="text-gray-600">From drones to project management software, we explore the tech revolution...</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Insight Post 3 -->
+                <a href="insights.html" class="block group">
+                     <div class="bg-white rounded-lg shadow-md overflow-hidden h-full transform group-hover:shadow-xl transition-shadow duration-300">
+                        <img class="h-56 w-full object-cover" src="https://placehold.co/600x400/4a5568/ffffff?text=Risk+Management" alt="Article thumbnail">
+                        <div class="p-6">
+                            <span class="text-sm text-blue-600 font-semibold">CONSULTING</span>
+                            <h3 class="text-xl font-bold my-2 text-gray-800">Navigating Market Volatility: A Guide for Nigerian Businesses</h3>
+                            <p class="text-gray-600">Key strategies for building resilience and thriving in uncertain economic times...</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- About Dorstack -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">DORSTACK</h3>
+                    <p class="text-gray-400">Your premier partner for contracting and consulting in Nigeria. We build with integrity and advise with insight.</p>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-white transition">Our Projects</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p class="text-gray-400 mb-2">1234 Construction Lane, Abuja, Nigeria</p>
+                    <p class="text-gray-400 mb-2">Email: <a href="mailto:info@dorstack.com" class="hover:text-white transition">info@dorstack.com</a></p>
+                    <p class="text-gray-400">Phone: <a href="tel:+234123456789" class="hover:text-white transition">+234 (123) 456-789</a></p>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-6 text-center text-gray-500">
+                <p>&copy; <span id="year"></span> Dorstack. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Swiper.js JS for Testimonial Slider -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+</body>
+</html>
