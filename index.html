@@ -8,238 +8,131 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        // Custom Tailwind CSS Configuration
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        'zaffre': '#081A51',
-                        'gold': '#D4AF37',
-                        'light-gold': '#F0E68C',
-                    }
+                    colors: { 'zaffre': '#081A51', 'gold': '#D4AF37', 'light-gold': '#F0E68C' }
                 }
             }
         }
     </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5; /* A very light gray for the body background */
-            cursor: none; /* Hide the default cursor */
-        }
-        /* Custom Cursor Styling */
-        #cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #D4AF37;
-            border-radius: 50%;
-            position: fixed;
-            z-index: 10000;
-            pointer-events: none;
-            transition: transform 0.2s ease-out;
-        }
-        #cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #D4AF37;
-            border-radius: 50%;
-            position: fixed;
-            z-index: 10000;
-            pointer-events: none;
-            transition: all 0.3s ease-out;
-        }
-        body:hover #cursor-outline {
-            opacity: 0.5;
-        }
-        a:hover ~ #cursor-outline, button:hover ~ #cursor-outline {
-            transform: scale(1.5);
-            opacity: 1;
-        }
-        /* Click Animation */
-        #cursor-dot.clicked, #cursor-outline.clicked {
-            transform: scale(2.5);
-            transition: transform 0.1s ease-in-out;
-        }
-        
-        .hero-section {
-            background: linear-gradient(135deg, #081A51 0%, #1a2c6c 100%);
-        }
-        .tab-button.active {
-            border-bottom-color: #D4AF37;
-            color: #D4AF37;
-        }
-        .fade-in {
-            animation: fadeIn 1s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .header-logo {
-            height: 55px;
-            width: auto;
-        }
-        .btn-gold {
-            background-color: #D4AF37;
-            color: #081A51;
-            font-weight: 600;
-        }
-        .btn-gold:hover {
-            background-color: #b89a2e;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #f0f2f5; cursor: none; }
+        #cursor-dot { width: 8px; height: 8px; background-color: #D4AF37; border-radius: 50%; position: fixed; z-index: 10000; pointer-events: none; transition: transform 0.2s ease-out; }
+        #cursor-outline { width: 40px; height: 40px; border: 1px solid #D4AF37; border-radius: 50%; position: fixed; z-index: 10000; pointer-events: none; transition: all 0.3s ease-out; }
+        body:hover #cursor-outline { opacity: 0.5; }
+        a:hover ~ #cursor-outline, button:hover ~ #cursor-outline { transform: scale(1.5); opacity: 1; }
+        #cursor-dot.clicked, #cursor-outline.clicked { transform: scale(2.5); transition: transform 0.1s ease-in-out; }
+        .hero-section { position: relative; overflow: hidden; }
+        #hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: 1; transform: translateX(-50%) translateY(-50%); background-size: cover; }
+        .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(8, 26, 81, 0.7); z-index: 2; }
+        .hero-content { position: relative; z-index: 3; }
+        .tab-button.active { border-bottom-color: #D4AF37; color: #D4AF37; }
+        .fade-in { animation: fadeIn 1s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .header-logo { height: 55px; width: auto; }
+        .btn-gold { background-color: #D4AF37; color: #081A51; font-weight: 600; }
+        .btn-gold:hover { background-color: #b89a2e; }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- Custom Cursor Elements -->
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
 
-    <!-- Header & Navigation -->
     <header class="bg-white shadow-lg sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-2 flex justify-between items-center">
-            <!-- FIXED: Using a new, reliable link for the logo -->
-            <a href="#">
-                <img src=https://imgur.com/a/U2iSYAV.png" alt="Do'r Stack Ltd Logo" class="header-logo">
+            <a href="index.html">
+                <img src="https://i.imgur.com/u7P3zJm.png" alt="Do'r Stack Ltd Logo" class="header-logo">
             </a>
             <div class="hidden md:flex space-x-6 items-center">
                 <a href="#services" class="text-gray-600 hover:text-gold transition duration-300">Services</a>
                 <a href="#industries" class="text-gray-600 hover:text-gold transition duration-300">Industries</a>
                 <a href="#solutions" class="text-gray-600 hover:text-gold transition duration-300">Solutions</a>
                 <a href="#strategy" class="text-gray-600 hover:text-gold transition duration-300">Strategy</a>
-                <a href="#blog" class="text-gray-600 hover:text-gold transition duration-300">Blog</a>
+                <a href="blog.html" class="text-gray-600 hover:text-gold transition duration-300">Blog</a>
                 <a href="#contact" class="btn-gold py-2 px-5 rounded-full hover:shadow-lg transition duration-300">Contact Us</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-zaffre">
-                <i class="fas fa-bars fa-2x"></i>
-            </button>
+            <button id="mobile-menu-button" class="md:hidden text-zaffre"><i class="fas fa-bars fa-2x"></i></button>
         </nav>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
             <a href="#services" class="block py-2 text-gray-600 hover:text-gold">Services</a>
             <a href="#industries" class="block py-2 text-gray-600 hover:text-gold">Industries</a>
             <a href="#solutions" class="block py-2 text-gray-600 hover:text-gold">Solutions</a>
             <a href="#strategy" class="block py-2 text-gray-600 hover:text-gold">Strategy</a>
-            <a href="#blog" class="block py-2 text-gray-600 hover:text-gold">Blog</a>
+            <a href="blog.html" class="block py-2 text-gray-600 hover:text-gold">Blog</a>
             <a href="#contact" class="block mt-2 btn-gold py-2 px-4 rounded-full text-center">Contact Us</a>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero-section text-white min-h-[60vh] flex items-center justify-center fade-in">
-            <div class="text-center px-4">
+        <section class="hero-section text-white min-h-[70vh] flex items-center justify-center">
+            <video autoplay loop muted playsinline id="hero-video">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-plexus-network-connections-1630-large.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="hero-overlay"></div>
+            <div class="hero-content text-center px-4 fade-in">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4 text-shadow-lg">Do'r Stack Limited</h1>
                 <p class="text-lg md:text-2xl italic text-light-gold">"Delivering Excellence in Consulting and Contracting for Global Leaders"</p>
             </div>
         </section>
 
-        <!-- Services Section -->
         <section id="services" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-zaffre">Our Services</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-12"></div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-gray-50 p-8 rounded-lg shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="bg-zaffre text-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-chart-line fa-2x"></i>
-                        </div>
+                        <div class="bg-zaffre text-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-chart-line fa-2x"></i></div>
                         <h3 class="text-2xl font-bold mb-4 text-zaffre">Consulting Services</h3>
                         <p class="text-gray-600">Strategic planning, market analysis, operations management, and IT consulting to drive your business forward.</p>
                     </div>
                     <div class="bg-gray-50 p-8 rounded-lg shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="bg-zaffre text-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-hard-hat fa-2x"></i>
-                        </div>
+                        <div class="bg-zaffre text-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-hard-hat fa-2x"></i></div>
                         <h3 class="text-2xl font-bold mb-4 text-zaffre">Contracting Services</h3>
                         <p class="text-gray-600">End-to-end project management, specialized engineering, and comprehensive construction management.</p>
                     </div>
                     <div class="bg-gray-50 p-8 rounded-lg shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 md:col-span-2 lg:col-span-1">
-                        <div class="bg-zaffre text-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-building fa-2x"></i>
-                        </div>
+                        <div class="bg-zaffre text-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-building fa-2x"></i></div>
                         <h3 class="text-2xl font-bold mb-4 text-zaffre">Real-Estate Development</h3>
-                        <p class="text-gray-600">Expertise in developing residential, commercial, and mixed-use properties from conception to completion.</p>
+                        <p class="text-gray-600 mb-6">Expertise in developing residential, commercial, and mixed-use properties from conception to completion.</p>
+                        <a href="real-estate.html" class="btn-gold py-2 px-5 rounded-full hover:shadow-lg transition duration-300">Learn More</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Target Industries Section -->
         <section id="industries" class="py-20">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-zaffre">Target Industries</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-12"></div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
-                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-university fa-3x text-gold mb-4"></i>
-                        <p class="font-semibold text-zaffre">Finance</p>
-                    </div>
-                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-heartbeat fa-3x text-gold mb-4"></i>
-                        <p class="font-semibold text-zaffre">Healthcare</p>
-                    </div>
-                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-industry fa-3x text-gold mb-4"></i>
-                        <p class="font-semibold text-zaffre">Manufacturing</p>
-                    </div>
-                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-laptop-code fa-3x text-gold mb-4"></i>
-                        <p class="font-semibold text-zaffre">Technology</p>
-                    </div>
-                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-gas-pump fa-3x text-gold mb-4"></i>
-                        <p class="font-semibold text-zaffre">Energy</p>
-                    </div>
-                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-shopping-cart fa-3x text-gold mb-4"></i>
-                        <p class="font-semibold text-zaffre">Retail</p>
-                    </div>
+                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2"><i class="fas fa-university fa-3x text-gold mb-4"></i><p class="font-semibold text-zaffre">Finance</p></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2"><i class="fas fa-heartbeat fa-3x text-gold mb-4"></i><p class="font-semibold text-zaffre">Healthcare</p></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2"><i class="fas fa-industry fa-3x text-gold mb-4"></i><p class="font-semibold text-zaffre">Manufacturing</p></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2"><i class="fas fa-laptop-code fa-3x text-gold mb-4"></i><p class="font-semibold text-zaffre">Technology</p></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2"><i class="fas fa-gas-pump fa-3x text-gold mb-4"></i><p class="font-semibold text-zaffre">Energy</p></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2"><i class="fas fa-shopping-cart fa-3x text-gold mb-4"></i><p class="font-semibold text-zaffre">Retail</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- Tailored Solutions Section -->
         <section id="solutions" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-zaffre">Tailored Industry Solutions</h2>
-                 <div class="w-24 h-1 bg-gold mx-auto mb-12"></div>
+                <div class="w-24 h-1 bg-gold mx-auto mb-12"></div>
                 <div class="mb-8 flex justify-center border-b">
                     <button class="tab-button text-lg font-semibold py-2 px-6 border-b-4 border-transparent active" data-tab="tech">Technology</button>
                     <button class="tab-button text-lg font-semibold py-2 px-6 border-b-4 border-transparent" data-tab="health">Healthcare</button>
                     <button class="tab-button text-lg font-semibold py-2 px-6 border-b-4 border-transparent" data-tab="estate">Real Estate</button>
                 </div>
-                <!-- Technology Tab -->
-                <div id="tech" class="tab-content fade-in">
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Digital Transformation</h4><p>Cloud migration, IoT integration, AI/ML development.</p></div>
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Cybersecurity</h4><p>Security audits, incident response planning, data encryption.</p></div>
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Software Development</h4><p>Custom software, Agile development, DevOps services.</p></div>
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">IT Infrastructure</h4><p>Network design, IT support, and virtualization solutions.</p></div>
-                    </div>
-                </div>
-                <!-- Healthcare Tab -->
-                <div id="health" class="tab-content hidden">
-                     <div class="grid md:grid-cols-2 gap-8">
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Health Information Systems</h4><p>EHR implementation, telemedicine platforms, health analytics.</p></div>
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Compliance & Regulatory</h4><p>HIPAA compliance and automated regulatory reporting.</p></div>
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Patient Engagement</h4><p>Secure patient portals and mobile health applications.</p></div>
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Medical Devices & IoT</h4><p>Connected medical devices and robust device security.</p></div>
-                    </div>
-                </div>
-                <!-- Real Estate Tab -->
-                <div id="estate" class="tab-content hidden">
-                     <div class="grid md:grid-cols-2 gap-8">
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Property Management Solutions</h4><p>Integrated systems, smart building IoT, tenant apps.</p></div>
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Real Estate Analytics</h4><p>Market analysis tools and CRM implementation.</p></div>
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Virtual & Augmented Reality</h4><p>Virtual property tours and AR-powered staging.</p></div>
-                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Compliance & Documentation</h4><p>Automated compliance checks and digital document management.</p></div>
-                    </div>
-                </div>
+                <div id="tech" class="tab-content fade-in"><div class="grid md:grid-cols-2 gap-8"><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Digital Transformation</h4><p>Cloud migration, IoT integration, AI/ML development.</p></div><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Cybersecurity</h4><p>Security audits, incident response planning, data encryption.</p></div><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Software Development</h4><p>Custom software, Agile development, DevOps services.</p></div><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">IT Infrastructure</h4><p>Network design, IT support, and virtualization solutions.</p></div></div></div>
+                <div id="health" class="tab-content hidden"><div class="grid md:grid-cols-2 gap-8"><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Health Information Systems</h4><p>EHR implementation, telemedicine platforms, health analytics.</p></div><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Compliance & Regulatory</h4><p>HIPAA compliance and automated regulatory reporting.</p></div><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Patient Engagement</h4><p>Secure patient portals and mobile health applications.</p></div><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Medical Devices & IoT</h4><p>Connected medical devices and robust device security.</p></div></div></div>
+                <div id="estate" class="tab-content hidden"><div class="grid md:grid-cols-2 gap-8"><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Property Management Solutions</h4><p>Integrated systems, smart building IoT, tenant apps.</p></div><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Real Estate Analytics</h4><p>Market analysis tools and CRM implementation.</p></div><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Virtual & Augmented Reality</h4><p>Virtual property tours and AR-powered staging.</p></div><div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Compliance & Documentation</h4><p>Automated compliance checks and digital document management.</p></div></div></div>
             </div>
         </section>
         
-        <!-- Implementation Strategy Section -->
         <section id="strategy" class="py-20">
              <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-zaffre">Our Implementation Strategy</h2>
@@ -257,20 +150,6 @@
             </div>
         </section>
 
-        <!-- Blog/News Section -->
-        <section id="blog" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-zaffre">News & Industry Trends</h2>
-                <div class="w-24 h-1 bg-gold mx-auto mb-12"></div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:-translate-y-2"><img src="https://placehold.co/600x400/081A51/F0E68C?text=Tech" alt="Blog post image" class="w-full h-48 object-cover"><div class="p-6"><h4 class="font-bold text-xl mb-2 text-zaffre">The Rise of AI in Business</h4><p class="text-gray-600 mb-4">Discover how AI is reshaping industries and what it means for your business.</p><a href="#" class="text-gold font-semibold hover:underline">Read More &rarr;</a></div></div>
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:-translate-y-2"><img src="https://placehold.co/600x400/081A51/F0E68C?text=Healthcare" alt="Blog post image" class="w-full h-48 object-cover"><div class="p-6"><h4 class="font-bold text-xl mb-2 text-zaffre">Telemedicine's New Frontier</h4><p class="text-gray-600 mb-4">Exploring the latest advancements in remote patient care.</p><a href="#" class="text-gold font-semibold hover:underline">Read More &rarr;</a></div></div>
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:-translate-y-2"><img src="https://placehold.co/600x400/081A51/F0E68C?text=Real+Estate" alt="Blog post image" class="w-full h-48 object-cover"><div class="p-6"><h4 class="font-bold text-xl mb-2 text-zaffre">Smart Buildings are the Future</h4><p class="text-gray-600 mb-4">How IoT is creating more efficient and sustainable properties.</p><a href="#" class="text-gold font-semibold hover:underline">Read More &rarr;</a></div></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
         <section id="contact" class="py-20 bg-zaffre">
              <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-white">Get in Touch</h2>
@@ -290,7 +169,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-900 text-white py-10">
         <div class="container mx-auto px-6 text-center">
             <p>&copy; 2024 Do'r Stack Limited. All Rights Reserved.</p>
@@ -303,26 +181,15 @@
     </footer>
 
     <script>
-        // --- Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // --- Smooth Scrolling for Navigation ---
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
         });
-
-        // --- Tab Functionality ---
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabContents = document.querySelectorAll('.tab-content');
         tabButtons.forEach(button => {
@@ -335,8 +202,6 @@
                 document.getElementById(tabId).classList.add('fade-in');
             });
         });
-
-        // --- Custom Cursor Logic ---
         const cursorDot = document.getElementById('cursor-dot');
         const cursorOutline = document.getElementById('cursor-outline');
         window.addEventListener('mousemove', e => {
@@ -356,6 +221,5 @@
             cursorOutline.classList.remove('clicked');
         });
     </script>
-
 </body>
 </html>
