@@ -7,17 +7,66 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Custom Tailwind CSS Configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'zaffre': '#081A51',
+                        'gold': '#D4AF37',
+                        'light-gold': '#F0E68C',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* A very light gray for the body background */
+            cursor: none; /* Hide the default cursor */
         }
+        /* Custom Cursor Styling */
+        #cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #D4AF37;
+            border-radius: 50%;
+            position: fixed;
+            z-index: 10000;
+            pointer-events: none;
+            transition: transform 0.2s ease-out;
+        }
+        #cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #D4AF37;
+            border-radius: 50%;
+            position: fixed;
+            z-index: 10000;
+            pointer-events: none;
+            transition: all 0.3s ease-out;
+        }
+        body:hover #cursor-outline {
+            opacity: 0.5;
+        }
+        a:hover ~ #cursor-outline, button:hover ~ #cursor-outline {
+            transform: scale(1.5);
+            opacity: 1;
+        }
+        /* Click Animation */
+        #cursor-dot.clicked, #cursor-outline.clicked {
+            transform: scale(2.5);
+            transition: transform 0.1s ease-in-out;
+        }
+        
         .hero-section {
-            /* FIXED: Removed text from the placeholder to provide a clean background */
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/2d3748/ffffff') center center/cover no-repeat;
+            background: linear-gradient(135deg, #081A51 0%, #1a2c6c 100%);
         }
         .tab-button.active {
-            border-bottom-color: #3b82f6;
-            color: #3b82f6;
+            border-bottom-color: #D4AF37;
+            color: #D4AF37;
         }
         .fade-in {
             animation: fadeIn 1s ease-in-out;
@@ -27,79 +76,89 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .header-logo {
-            height: 60px;
+            height: 55px;
             width: auto;
+        }
+        .btn-gold {
+            background-color: #D4AF37;
+            color: #081A51;
+            font-weight: 600;
+        }
+        .btn-gold:hover {
+            background-color: #b89a2e;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="text-gray-800">
+
+    <!-- Custom Cursor Elements -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
 
     <!-- Header & Navigation -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
+    <header class="bg-white shadow-lg sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-2 flex justify-between items-center">
-            <!-- FIXED: Logo is now embedded directly and completely into the code -->
+            <!-- FIXED: Using a new, reliable link for the logo -->
             <a href="#">
-                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAH0A+gDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmpKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1VZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmpKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A/v4ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigA" alt="Your Official Logo is here" class="header-logo">
+                <img src="https://i.imgur.com/WfQZQJm.png" alt="Do'r Stack Ltd Logo" class="header-logo">
             </a>
             <div class="hidden md:flex space-x-6 items-center">
-                <a href="#services" class="text-gray-600 hover:text-blue-600 transition duration-300">Services</a>
-                <a href="#industries" class="text-gray-600 hover:text-blue-600 transition duration-300">Industries</a>
-                <a href="#solutions" class="text-gray-600 hover:text-blue-600 transition duration-300">Solutions</a>
-                <a href="#strategy" class="text-gray-600 hover:text-blue-600 transition duration-300">Strategy</a>
-                <a href="#blog" class="text-gray-600 hover:text-blue-600 transition duration-300">Blog</a>
-                <a href="#contact" class="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition duration-300">Contact Us</a>
+                <a href="#services" class="text-gray-600 hover:text-gold transition duration-300">Services</a>
+                <a href="#industries" class="text-gray-600 hover:text-gold transition duration-300">Industries</a>
+                <a href="#solutions" class="text-gray-600 hover:text-gold transition duration-300">Solutions</a>
+                <a href="#strategy" class="text-gray-600 hover:text-gold transition duration-300">Strategy</a>
+                <a href="#blog" class="text-gray-600 hover:text-gold transition duration-300">Blog</a>
+                <a href="#contact" class="btn-gold py-2 px-5 rounded-full hover:shadow-lg transition duration-300">Contact Us</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-gray-600">
+            <button id="mobile-menu-button" class="md:hidden text-zaffre">
                 <i class="fas fa-bars fa-2x"></i>
             </button>
         </nav>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
-            <a href="#services" class="block py-2 text-gray-600 hover:text-blue-600">Services</a>
-            <a href="#industries" class="block py-2 text-gray-600 hover:text-blue-600">Industries</a>
-            <a href="#solutions" class="block py-2 text-gray-600 hover:text-blue-600">Solutions</a>
-            <a href="#strategy" class="block py-2 text-gray-600 hover:text-blue-600">Strategy</a>
-            <a href="#blog" class="block py-2 text-gray-600 hover:text-blue-600">Blog</a>
-            <a href="#contact" class="block mt-2 bg-blue-600 text-white py-2 px-4 rounded-full text-center hover:bg-blue-700">Contact Us</a>
+            <a href="#services" class="block py-2 text-gray-600 hover:text-gold">Services</a>
+            <a href="#industries" class="block py-2 text-gray-600 hover:text-gold">Industries</a>
+            <a href="#solutions" class="block py-2 text-gray-600 hover:text-gold">Solutions</a>
+            <a href="#strategy" class="block py-2 text-gray-600 hover:text-gold">Strategy</a>
+            <a href="#blog" class="block py-2 text-gray-600 hover:text-gold">Blog</a>
+            <a href="#contact" class="block mt-2 btn-gold py-2 px-4 rounded-full text-center">Contact Us</a>
         </div>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-section text-white h-[60vh] flex items-center justify-center fade-in">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">Do'r Stack Limited</h1>
-                <p class="text-lg md:text-2xl italic">"Delivering Excellence in Consulting and Contracting for Global Leaders"</p>
+        <section class="hero-section text-white min-h-[60vh] flex items-center justify-center fade-in">
+            <div class="text-center px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 text-shadow-lg">Do'r Stack Limited</h1>
+                <p class="text-lg md:text-2xl italic text-light-gold">"Delivering Excellence in Consulting and Contracting for Global Leaders"</p>
             </div>
         </section>
 
         <!-- Services Section -->
         <section id="services" class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-zaffre">Our Services</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-12"></div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Consulting Services -->
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition duration-300">
-                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                        <div class="bg-zaffre text-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-chart-line fa-2x"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">Consulting Services</h3>
+                        <h3 class="text-2xl font-bold mb-4 text-zaffre">Consulting Services</h3>
                         <p class="text-gray-600">Strategic planning, market analysis, operations management, and IT consulting to drive your business forward.</p>
                     </div>
-                    <!-- Contracting Services -->
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition duration-300">
-                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                        <div class="bg-zaffre text-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-hard-hat fa-2x"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">Contracting Services</h3>
+                        <h3 class="text-2xl font-bold mb-4 text-zaffre">Contracting Services</h3>
                         <p class="text-gray-600">End-to-end project management, specialized engineering, and comprehensive construction management.</p>
                     </div>
-                    <!-- Real Estate Development -->
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition duration-300 md:col-span-2 lg:col-span-1">
-                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 md:col-span-2 lg:col-span-1">
+                        <div class="bg-zaffre text-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-building fa-2x"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">Real-Estate Development</h3>
+                        <h3 class="text-2xl font-bold mb-4 text-zaffre">Real-Estate Development</h3>
                         <p class="text-gray-600">Expertise in developing residential, commercial, and mixed-use properties from conception to completion.</p>
                     </div>
                 </div>
@@ -109,31 +168,32 @@
         <!-- Target Industries Section -->
         <section id="industries" class="py-20">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">Target Industries</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-zaffre">Target Industries</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-12"></div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
                     <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-university fa-3x text-blue-600 mb-4"></i>
-                        <p class="font-semibold">Finance</p>
+                        <i class="fas fa-university fa-3x text-gold mb-4"></i>
+                        <p class="font-semibold text-zaffre">Finance</p>
                     </div>
                     <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-heartbeat fa-3x text-blue-600 mb-4"></i>
-                        <p class="font-semibold">Healthcare</p>
+                        <i class="fas fa-heartbeat fa-3x text-gold mb-4"></i>
+                        <p class="font-semibold text-zaffre">Healthcare</p>
                     </div>
                     <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-industry fa-3x text-blue-600 mb-4"></i>
-                        <p class="font-semibold">Manufacturing</p>
+                        <i class="fas fa-industry fa-3x text-gold mb-4"></i>
+                        <p class="font-semibold text-zaffre">Manufacturing</p>
                     </div>
                     <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-laptop-code fa-3x text-blue-600 mb-4"></i>
-                        <p class="font-semibold">Technology</p>
+                        <i class="fas fa-laptop-code fa-3x text-gold mb-4"></i>
+                        <p class="font-semibold text-zaffre">Technology</p>
                     </div>
                     <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-gas-pump fa-3x text-blue-600 mb-4"></i>
-                        <p class="font-semibold">Energy</p>
+                        <i class="fas fa-gas-pump fa-3x text-gold mb-4"></i>
+                        <p class="font-semibold text-zaffre">Energy</p>
                     </div>
                     <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                        <i class="fas fa-shopping-cart fa-3x text-blue-600 mb-4"></i>
-                        <p class="font-semibold">Retail</p>
+                        <i class="fas fa-shopping-cart fa-3x text-gold mb-4"></i>
+                        <p class="font-semibold text-zaffre">Retail</p>
                     </div>
                 </div>
             </div>
@@ -142,73 +202,38 @@
         <!-- Tailored Solutions Section -->
         <section id="solutions" class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">Tailored Industry Solutions</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-zaffre">Tailored Industry Solutions</h2>
+                 <div class="w-24 h-1 bg-gold mx-auto mb-12"></div>
                 <div class="mb-8 flex justify-center border-b">
-                    <button class="tab-button text-lg font-semibold py-2 px-6 border-b-2 border-transparent active" data-tab="tech">Technology</button>
-                    <button class="tab-button text-lg font-semibold py-2 px-6 border-b-2 border-transparent" data-tab="health">Healthcare</button>
-                    <button class="tab-button text-lg font-semibold py-2 px-6 border-b-2 border-transparent" data-tab="estate">Real Estate</button>
+                    <button class="tab-button text-lg font-semibold py-2 px-6 border-b-4 border-transparent active" data-tab="tech">Technology</button>
+                    <button class="tab-button text-lg font-semibold py-2 px-6 border-b-4 border-transparent" data-tab="health">Healthcare</button>
+                    <button class="tab-button text-lg font-semibold py-2 px-6 border-b-4 border-transparent" data-tab="estate">Real Estate</button>
                 </div>
                 <!-- Technology Tab -->
-                <div id="tech" class="tab-content">
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">Digital Transformation</h4>
-                            <p>Cloud migration, IoT integration, AI/ML development.</p>
-                        </div>
-                        <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">Cybersecurity</h4>
-                            <p>Security audits, incident response planning, data encryption.</p>
-                        </div>
-                        <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">Software Development</h4>
-                            <p>Custom software, Agile development, DevOps services.</p>
-                        </div>
-                        <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">IT Infrastructure</h4>
-                            <p>Network design, IT support, and virtualization solutions.</p>
-                        </div>
+                <div id="tech" class="tab-content fade-in">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Digital Transformation</h4><p>Cloud migration, IoT integration, AI/ML development.</p></div>
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Cybersecurity</h4><p>Security audits, incident response planning, data encryption.</p></div>
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Software Development</h4><p>Custom software, Agile development, DevOps services.</p></div>
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">IT Infrastructure</h4><p>Network design, IT support, and virtualization solutions.</p></div>
                     </div>
                 </div>
                 <!-- Healthcare Tab -->
                 <div id="health" class="tab-content hidden">
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">Health Information Systems</h4>
-                            <p>EHR implementation, telemedicine platforms, health analytics.</p>
-                        </div>
-                        <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">Compliance & Regulatory</h4>
-                            <p>HIPAA compliance and automated regulatory reporting.</p>
-                        </div>
-                        <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">Patient Engagement</h4>
-                            <p>Secure patient portals and mobile health applications.</p>
-                        </div>
-                         <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">Medical Devices & IoT</h4>
-                            <p>Connected medical devices and robust device security.</p>
-                        </div>
+                     <div class="grid md:grid-cols-2 gap-8">
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Health Information Systems</h4><p>EHR implementation, telemedicine platforms, health analytics.</p></div>
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Compliance & Regulatory</h4><p>HIPAA compliance and automated regulatory reporting.</p></div>
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Patient Engagement</h4><p>Secure patient portals and mobile health applications.</p></div>
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Medical Devices & IoT</h4><p>Connected medical devices and robust device security.</p></div>
                     </div>
                 </div>
                 <!-- Real Estate Tab -->
                 <div id="estate" class="tab-content hidden">
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">Property Management Solutions</h4>
-                            <p>Integrated systems, smart building IoT, tenant apps.</p>
-                        </div>
-                        <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">Real Estate Analytics</h4>
-                            <p>Market analysis tools and CRM implementation.</p>
-                        </div>
-                        <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">Virtual & Augmented Reality</h4>
-                            <p>Virtual property tours and AR-powered staging.</p>
-                        </div>
-                         <div class="p-6 bg-gray-50 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2">Compliance & Documentation</h4>
-                            <p>Automated compliance checks and digital document management.</p>
-                        </div>
+                     <div class="grid md:grid-cols-2 gap-8">
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Property Management Solutions</h4><p>Integrated systems, smart building IoT, tenant apps.</p></div>
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Real Estate Analytics</h4><p>Market analysis tools and CRM implementation.</p></div>
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Virtual & Augmented Reality</h4><p>Virtual property tours and AR-powered staging.</p></div>
+                        <div class="p-6 bg-gray-50 rounded-lg"><h4 class="font-bold text-xl mb-2 text-zaffre">Compliance & Documentation</h4><p>Automated compliance checks and digital document management.</p></div>
                     </div>
                 </div>
             </div>
@@ -217,36 +242,16 @@
         <!-- Implementation Strategy Section -->
         <section id="strategy" class="py-20">
              <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">Our Implementation Strategy</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-zaffre">Our Implementation Strategy</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-16"></div>
                 <div class="relative">
-                    <!-- The connecting line -->
-                    <div class="hidden md:block absolute top-5 left-0 w-full h-0.5 bg-blue-300"></div>
-                    <div class="grid md:grid-cols-5 gap-8 text-center relative">
-                        <div class="flex flex-col items-center">
-                            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center z-10">1</div>
-                            <h4 class="font-bold mt-4">Assessment</h4>
-                            <p class="text-sm text-gray-600">Thorough analysis of your current systems.</p>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center z-10">2</div>
-                            <h4 class="font-bold mt-4">Design</h4>
-                            <p class="text-sm text-gray-600">Custom solution design based on your needs.</p>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center z-10">3</div>
-                            <h4 class="font-bold mt-4">Implementation</h4>
-                            <p class="text-sm text-gray-600">Seamless execution and integration.</p>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center z-10">4</div>
-                            <h4 class="font-bold mt-4">Training & Support</h4>
-                            <p class="text-sm text-gray-600">Comprehensive training and ongoing support.</p>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center z-10">5</div>
-                            <h4 class="font-bold mt-4">Improvement</h4>
-                            <p class="text-sm text-gray-600">Continuous review and optimization.</p>
-                        </div>
+                    <div class="hidden md:block absolute top-5 left-0 w-full h-0.5 bg-gold opacity-30"></div>
+                    <div class="grid md:grid-cols-5 gap-y-8 md:gap-y-0 text-center relative">
+                        <div class="flex flex-col items-center"><div class="w-10 h-10 rounded-full bg-zaffre text-white flex items-center justify-center z-10 font-bold">1</div><h4 class="font-bold mt-4 text-zaffre">Assessment</h4><p class="text-sm text-gray-600 px-2">Thorough analysis of your current systems.</p></div>
+                        <div class="flex flex-col items-center"><div class="w-10 h-10 rounded-full bg-zaffre text-white flex items-center justify-center z-10 font-bold">2</div><h4 class="font-bold mt-4 text-zaffre">Design</h4><p class="text-sm text-gray-600 px-2">Custom solution design based on your needs.</p></div>
+                        <div class="flex flex-col items-center"><div class="w-10 h-10 rounded-full bg-zaffre text-white flex items-center justify-center z-10 font-bold">3</div><h4 class="font-bold mt-4 text-zaffre">Implementation</h4><p class="text-sm text-gray-600 px-2">Seamless execution and integration.</p></div>
+                        <div class="flex flex-col items-center"><div class="w-10 h-10 rounded-full bg-zaffre text-white flex items-center justify-center z-10 font-bold">4</div><h4 class="font-bold mt-4 text-zaffre">Training & Support</h4><p class="text-sm text-gray-600 px-2">Comprehensive training and ongoing support.</p></div>
+                        <div class="flex flex-col items-center"><div class="w-10 h-10 rounded-full bg-zaffre text-white flex items-center justify-center z-10 font-bold">5</div><h4 class="font-bold mt-4 text-zaffre">Improvement</h4><p class="text-sm text-gray-600 px-2">Continuous review and optimization.</p></div>
                     </div>
                 </div>
             </div>
@@ -255,55 +260,30 @@
         <!-- Blog/News Section -->
         <section id="blog" class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">News & Industry Trends</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-zaffre">News & Industry Trends</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-12"></div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden">
-                        <img src="https://placehold.co/600x400/a0aec0/ffffff?text=Tech+Trends" alt="Blog post image" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="font-bold text-xl mb-2">The Rise of AI in Business</h4>
-                            <p class="text-gray-600 mb-4">Discover how AI is reshaping industries and what it means for your business.</p>
-                            <a href="#" class="text-blue-600 font-semibold">Read More &rarr;</a>
-                        </div>
-                    </div>
-                     <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden">
-                        <img src="https://placehold.co/600x400/a0aec0/ffffff?text=Healthcare+Innovation" alt="Blog post image" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="font-bold text-xl mb-2">Telemedicine's New Frontier</h4>
-                            <p class="text-gray-600 mb-4">Exploring the latest advancements in remote patient care.</p>
-                            <a href="#" class="text-blue-600 font-semibold">Read More &rarr;</a>
-                        </div>
-                    </div>
-                     <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden">
-                        <img src="https://placehold.co/600x400/a0aec0/ffffff?text=Real+Estate+Tech" alt="Blog post image" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="font-bold text-xl mb-2">Smart Buildings are the Future</h4>
-                            <p class="text-gray-600 mb-4">How IoT is creating more efficient and sustainable properties.</p>
-                            <a href="#" class="text-blue-600 font-semibold">Read More &rarr;</a>
-                        </div>
-                    </div>
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:-translate-y-2"><img src="https://placehold.co/600x400/081A51/F0E68C?text=Tech" alt="Blog post image" class="w-full h-48 object-cover"><div class="p-6"><h4 class="font-bold text-xl mb-2 text-zaffre">The Rise of AI in Business</h4><p class="text-gray-600 mb-4">Discover how AI is reshaping industries and what it means for your business.</p><a href="#" class="text-gold font-semibold hover:underline">Read More &rarr;</a></div></div>
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:-translate-y-2"><img src="https://placehold.co/600x400/081A51/F0E68C?text=Healthcare" alt="Blog post image" class="w-full h-48 object-cover"><div class="p-6"><h4 class="font-bold text-xl mb-2 text-zaffre">Telemedicine's New Frontier</h4><p class="text-gray-600 mb-4">Exploring the latest advancements in remote patient care.</p><a href="#" class="text-gold font-semibold hover:underline">Read More &rarr;</a></div></div>
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:-translate-y-2"><img src="https://placehold.co/600x400/081A51/F0E68C?text=Real+Estate" alt="Blog post image" class="w-full h-48 object-cover"><div class="p-6"><h4 class="font-bold text-xl mb-2 text-zaffre">Smart Buildings are the Future</h4><p class="text-gray-600 mb-4">How IoT is creating more efficient and sustainable properties.</p><a href="#" class="text-gold font-semibold hover:underline">Read More &rarr;</a></div></div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-blue-50">
+        <section id="contact" class="py-20 bg-zaffre">
              <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">Get in Touch</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-white">Get in Touch</h2>
+                 <div class="w-24 h-1 bg-gold mx-auto mb-12"></div>
                 <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
                     <form>
                         <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-                            <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                            <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold">
+                            <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold">
                         </div>
-                         <div class="mb-6">
-                             <input type="text" placeholder="Subject" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-                         </div>
-                        <div class="mb-6">
-                            <textarea placeholder="Your Message" rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"></textarea>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="bg-blue-600 text-white py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300">Send Message</button>
-                        </div>
+                         <div class="mb-6"><input type="text" placeholder="Subject" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"></div>
+                        <div class="mb-6"><textarea placeholder="Your Message" rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"></textarea></div>
+                        <div class="text-center"><button type="submit" class="btn-gold py-3 px-8 rounded-full hover:shadow-lg transition duration-300">Send Message</button></div>
                     </form>
                 </div>
             </div>
@@ -311,55 +291,69 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-10">
+    <footer class="bg-gray-900 text-white py-10">
         <div class="container mx-auto px-6 text-center">
             <p>&copy; 2024 Do'r Stack Limited. All Rights Reserved.</p>
             <div class="mt-4 flex justify-center space-x-4">
-                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="text-gray-400 hover:text-gold"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-gold"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-gold"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // --- Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Smooth scrolling for navigation links
+        // --- Smooth Scrolling for Navigation ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                // For nav links, prevent default and scroll smoothly
                 if (this.getAttribute('href').startsWith('#')) {
                     e.preventDefault();
                     document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });
                 }
-                // For logo link with href="#", allow default behavior to go to top
             });
         });
 
-        // Tab functionality for solutions section
+        // --- Tab Functionality ---
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabContents = document.querySelectorAll('.tab-content');
-
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Deactivate all buttons and hide all content
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 tabContents.forEach(content => content.classList.add('hidden'));
-
-                // Activate clicked button and show corresponding content
                 button.classList.add('active');
                 const tabId = button.getAttribute('data-tab');
                 document.getElementById(tabId).classList.remove('hidden');
                 document.getElementById(tabId).classList.add('fade-in');
             });
+        });
+
+        // --- Custom Cursor Logic ---
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        window.addEventListener('mousemove', e => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.style.left = `${posX - 15}px`;
+            cursorOutline.style.top = `${posY - 15}px`;
+        });
+        document.addEventListener('mousedown', () => {
+            cursorDot.classList.add('clicked');
+            cursorOutline.classList.add('clicked');
+        });
+        document.addEventListener('mouseup', () => {
+            cursorDot.classList.remove('clicked');
+            cursorOutline.classList.remove('clicked');
         });
     </script>
 
